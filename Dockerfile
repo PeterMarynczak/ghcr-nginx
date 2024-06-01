@@ -1,19 +1,21 @@
+# Use the official PHP image with Nginx and PHP-FPM
+# Use the official PHP image with Nginx and PHP-FPM
 FROM php:8.2-fpm
 
 # Install Nginx
-RUN apt-get update && apt-get install -y nginx && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y nginx
 
-# Remove default server definition
+# Remove the default Nginx configuration file
 RUN rm /etc/nginx/sites-enabled/default
 
-# Add our Nginx server definition
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Copy the custom Nginx configuration file
+COPY default.conf /etc/nginx/conf.d/
 
-# Copy PHP index file
-COPY index.php /var/www/html/index.php
+# Copy the PHP source code
+COPY src /var/www/html
 
-# Expose port 80
-EXPOSE 80
+# Expose port 9090
+EXPOSE 9090
 
 # Start Nginx and PHP-FPM
 CMD ["sh", "-c", "php-fpm -D && nginx -g 'daemon off;'"]
