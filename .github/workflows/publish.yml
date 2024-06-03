@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          context:
+          context: .
           file: phpdocker/php-fpm/Dockerfile
       - name: Build and push the image
         run: |
