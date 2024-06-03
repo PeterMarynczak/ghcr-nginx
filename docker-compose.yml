@@ -10,7 +10,7 @@ services:
       - '8080:80'
 
   php-fpm:
-    build: phpdocker/php-fpm
+    image: ghcr.io/petermarynczak/ghcr-nginx:latest
     working_dir: /application
     volumes:
       - '.:/application'
