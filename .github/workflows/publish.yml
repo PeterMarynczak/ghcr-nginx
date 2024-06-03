@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          context: .
-          file: phpdocker/php-fpm/Dockerfile
+#        with:
+#          context: .
+#          file: phpdocker/php-fpm/Dockerfile
       - name: Build and push the image
         run: |
           docker login --username petermarynczak --password ${{ secrets.GH_PAT }} ghcr.io
-          docker build . --tag ghcr.io/petermarynczak/ghcr-nginx:latest
+          docker build /phpdocker/php-fpm --tag ghcr.io/petermarynczak/ghcr-nginx:latest
           docker push ghcr.io/petermarynczak/ghcr-nginx:latest
 #      - name: Checkout repository
 #        uses: actions/checkout@v2
