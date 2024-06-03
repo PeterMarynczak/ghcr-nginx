@@ -29,4 +29,4 @@ jobs:
           context: .
           file: phpdocker/php-fpm/Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: ghcr.io/petermaynczak/ghcr-nginx:latest
